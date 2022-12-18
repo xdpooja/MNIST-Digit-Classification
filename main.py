@@ -8,10 +8,10 @@ testdf = pd.read_csv(r'D:/python/ml/mnist_test.csv')
 traindf = pd.read_csv(r'D:/python/ml/mnist_train.csv')
 
 #preprocessing
-x_train = traindf.drop('label',axis=1)
-y_train = traindf['label']
-x_test = testdf.drop('label',axis=1)
-y_test = testdf['label']
+x_train = traindf.drop('label',axis=1).iloc[0:1000,0:1000]
+y_train = traindf['label'].iloc[0:1000]
+x_test = testdf.drop('label',axis=1).iloc[0:1000,0:1000]
+y_test = testdf['label'].iloc[0:1000]
 print(x_train.shape)
 print(x_test.shape)
 y_test
