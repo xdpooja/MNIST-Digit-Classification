@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib
 from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import accuracy_score
 
 testdf = pd.read_csv(r'D:/python/ml/mnist_test.csv')
 traindf = pd.read_csv(r'D:/python/ml/mnist_train.csv')
@@ -24,11 +25,22 @@ plt.imshow(image, cmap=matplotlib.cm.binary)
 print(y_train[random_num])
 
 #SVM model
-from sklearn.svm import LinearSVC
-svm = LinearSVC()
-svm.fit(x_train, y_train)
-pred_svm = svm.predict(x_test)
-print("Mean squared error of SVM :",mean_squared_error(y_test, pred_svm))
+from sklearn.svm import SVC
+svml = SVC(kernel="linear")
+svml.fit(x_train, y_train)
+pred_svml = svml.predict(x_test)
+print("Mean squared error svm(linear): ",mean_squared_error(y_test, pred_svml))
+print("Accuracy svm(linear): ",accuracy_score(y_test, pred_svml))
+svmp = SVC(kernel="poly", degree = 2)
+svmp.fit(x_train, y_train)
+pred_svmp = svmp.predict(x_test)
+print("Mean squared error svm(polynomial): ",mean_squared_error(y_test, pred_svmp))
+print("Accuracy svm(polynomial): ",accuracy_score(y_test, pred_svmp))
+svm_rbf = SVC(kernel="rbf")
+svm_rbf.fit(x_train, y_train)
+pred_svm_rbf = svm_rbf.predict(x_test)
+print("Mean squared error svm(rbf): ",mean_squared_error(y_test, pred_svm_rbf))
+print("Accuracy svm(rbf): ",accuracy_score(y_test, pred_svm_rbf))
 
 #logistic regression
 from sklearn.linear_model import LogisticRegression  
