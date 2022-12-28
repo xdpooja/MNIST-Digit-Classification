@@ -5,7 +5,6 @@ import numpy as np
 import cv2
 from sklearn.svm import SVC
 import pandas as pd
-import pickle
 import os
 from matplotlib.image import imread
 
@@ -27,7 +26,7 @@ canvas.grid(row=0, column=0, columnspan=4)
 img = Image.new('RGB', (300,300), ('black'))
 imagedraw = ImageDraw.Draw(img)
 count = 0
-text_change = "Predicted Value : NONE"
+text_change = "Draw me a number!"
 def draw(event):
     x , y = event.x , event.y
     x1 , y1 = x-10 , y-10
@@ -58,7 +57,7 @@ def predict():
         count = count+1
     
     pred_svm_rbf = svm_rbf.predict(convert)
-    text_change = "Predicted Value : " + str(pred_svm_rbf[0])
+    text_change = "I think it is . . ." + str(pred_svm_rbf[0])
     label.config(text = text_change)
     
 
